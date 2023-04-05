@@ -18,14 +18,17 @@ import androidx.core.app.NotificationCompat;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String ACTION_UPDATE_NOTIFICATION = ".ACTION_UPDATE_NOTIFICATION";
-    private static final String PRIMARY_CHANNEL_ID = "primary_notification_channel";
+    private static final String ACTION_UPDATE_NOTIFICATION =
+            ".ACTION_UPDATE_NOTIFICATION";
+    private static final String PRIMARY_CHANNEL_ID =
+            "primary_notification_channel";
 
     private static final int NOTIFICATION_ID = 0;
 
-    private Button button_notify;
-    private Button button_cancel;
-    private Button button_update;
+    private Button
+            button_notify,
+            button_cancel,
+            button_update;
 
     private NotificationManager mNotifyManager;
 
@@ -72,7 +75,9 @@ public class MainActivity extends AppCompatActivity {
             notificationChannel.enableLights(true);
             notificationChannel.setLightColor(Color.RED);
             notificationChannel.enableVibration(true);
-            notificationChannel.setDescription(getString(R.string.notification_channel_description));
+            notificationChannel.setDescription(
+                    getString(R.string.notification_channel_description)
+            );
 
             mNotifyManager.createNotificationChannel(notificationChannel);
         }
@@ -89,7 +94,10 @@ public class MainActivity extends AppCompatActivity {
 
         NotificationCompat.Builder notifyBuilder = getNotificationBuilder();
 
-        notifyBuilder.addAction(R.drawable.ic_update, getString(R.string.update), updatePendingIntent);
+        notifyBuilder.addAction(
+                R.drawable.ic_update,
+                getString(R.string.update), updatePendingIntent
+        );
 
         mNotifyManager.notify(NOTIFICATION_ID, notifyBuilder.build());
 
@@ -119,9 +127,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void updateNotification() {
-        Bitmap androidImage = BitmapFactory
-                .decodeResource(getResources(), R.drawable.mascot_1);
-
         NotificationCompat.Builder notifyBuilder = getNotificationBuilder();
         notifyBuilder.setStyle(
                 new NotificationCompat.InboxStyle()
@@ -141,7 +146,11 @@ public class MainActivity extends AppCompatActivity {
         setNotificationButtonState(true, false, false);
     }
 
-    void setNotificationButtonState(Boolean isNotifyEnabled, Boolean isUpdateEnabled, Boolean isCancelEnabled) {
+    void setNotificationButtonState(
+            Boolean isNotifyEnabled,
+            Boolean isUpdateEnabled,
+            Boolean isCancelEnabled
+    ) {
         button_notify.setEnabled(isNotifyEnabled);
         button_update.setEnabled(isUpdateEnabled);
         button_cancel.setEnabled(isCancelEnabled);
